@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Truth Behind RC</title>
+    <link rel="stylesheet" href="/css/The_truth_behind_RC.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000000, #1a0000, #000000);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 0, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 0, 0, 0.08) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #ff0000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff0000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: #ff0000;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 120px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .about-card {
+            background: rgba(255, 0, 0, 0.05);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: heroFadeIn 1s ease-out forwards;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .about-card:hover::before {
+            left: 100%;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff0000;
+            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.2);
+        }
+
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: #ff0000;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .card-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* List Styling */
+        .list {
+            list-style: none;
+            color: #ffffff;
+            text-decoration: none;
+            margin-top: 1rem;
+            padding: 0;
+        }
+
+        .list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .list a {
+            color: #ff0000;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+
+        .list a:hover {
+            background: rgba(255, 0, 0, 0.1);
+            border-color: #ff0000;
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #000000, #1a0000);
+            padding: 4rem 0 2rem;
+            border-top: 2px solid #ff0000;
+            position: relative;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #ff0000;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            margin-bottom: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+            padding: 0.3rem 0;
+        }
+
+        .footer-section a:hover {
+            color: #ff0000;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">RC</div>
+            <ul class="nav-menu">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="#trading">Trading</a></li>
+                <li><a href="#donations">Donations</a></li>
+                <li><a href="#shops">Shops</a></li>
+                <li><a href="#dupes">Dupes</a></li>
+                <li><a href="#stash-hunting">Stash Hunting</a></li>
+                <li><a href="#farming">Farming</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Introduction Section -->
+            <section class="section">
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="card-icon">❓</div>
+                        <h3 class="card-title">The Truth Behind Restore Corps</h3>
+                        <p class="card-text">A lot of people think that we have some secret <b title="duplicate items">dupe</b> but is this so? 
+                            <br>Let's find out.
+                            <br>We will take you through all the things we know.
+                            <br><h2>It will go as follows:</h2></p>
+                            <ul class="list">
+                                <li><a href="#trading">Trading</a></li>
+                                <li><a href="#donations">Donations</a></li>
+                                <li><a href="#shops">Shops</a></li>
+                                <li><a href="#dupes">Dupes</a></li>
+                                <li><a href="#stash-hunting">Stash Hunting</a></li>
+                                <li><a href="#farming">Farming</a></li>
+                            </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trading Section -->
+            <section id="trading" class="section">
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="card-icon">🧑‍💼</div>
+                        <h3 class="card-title">Trading</h3>
+                        <p class="card-text">Our trading operations involve strategic exchanges with other players and factions. We focus on fair deals and building long-term relationships within the community. Our traders are experienced in market analysis and resource valuation.</p>
+                        <a href=""></a>
+                        <ul class="list">
+                            <li><a href="/info/how_to_trade.html">how to kown you traides</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Donations Section -->
+            <section id="donations" class="section">
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="card-icon">📩</div>
+                        <h3 class="card-title">Donations</h3>
+                        <p class="card-text">Community donations help us maintain our operations and support new members. We accept various resources and materials that contribute to our collective goals. All donations are transparently tracked and used for the benefit of the entire corps.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Shops Section -->
+            <section id="shops" class="section">
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="card-icon">🏬</div>
+                        <h3 class="card-title">Shops</h3>
+                        <p class="card-text">Our network of shops provides essential goods and services to members and allies. We maintain competitive prices and quality products. Our shop locations are strategically placed for maximum accessibility and security.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dupes Section -->
+            <section id="dupes" class="section">
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="card-icon">❗</div>
+                        <h3 class="card-title">Dupes</h3>
+                        <p class="card-text">Contrary to popular belief, Restore Corps does not rely on duplication exploits. Our wealth comes from legitimate gameplay, strategic planning, and community cooperation. We believe in fair play and maintaining the integrity of the game.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stash Hunting Section -->
+            <section id="stash-hunting" class="section">
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="card-icon">👮</div>
+                        <h3 class="card-title">Stash Hunting</h3>
+                        <p class="card-text">Our exploration teams specialize in locating and securing abandoned resources. We operate with respect for other players' property and follow established protocols. Stash hunting is a legitimate strategy that requires skill, patience, and knowledge of the game world.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Farming Section -->
+            <section id="farming" class="section">
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="card-icon">🚜</div>
+                        <h3 class="card-title">Farming</h3>
+                        <p class="card-text">Resource farming is a cornerstone of our operations. We maintain efficient farming operations that provide steady income and materials for our members. Our farming techniques are optimized for maximum yield while maintaining sustainability.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Command Center</h3>
+                    <p>msg kitywiel#6220 on dc</p>
+                    <p><a href="/Discord_link/discord_redirect_page.html" target="_blank">Discord Operations</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Network Links</h3>
+                    <p><a href="#">Operational Status</a></p>
+                    <p><a href="#">Mission Reports</a></p>
+                    <p><a href="/Home/The_truth-behind_RC.html">The Truth</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Join the Corps</h3>
+                    <p><a href="#">Recruitment</a></p>
+                    <p><a href="#">Training Programs</a></p>
+                    <p><a href="#">Support Operations</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Restore Corps • rc.key-studios.com • Classified Operations Division</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.9)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'heroFadeIn 1s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.about-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
